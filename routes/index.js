@@ -9,10 +9,10 @@ var client = new Twitter({
   access_token_secret: config.access_token_secret
 });
 
-router.post('/post', function(req,res,next){
-  var screenName = {screen_name: req.query.q}
+router.post('/tweet', function(req,res,next){
+  var posting = {status: req.query.q}
 
-  client.get('statuses/user_timeline', screenName, function(error, tweets, response) {
+  client.get('statuses/update', posting, function(error, tweets, response) {
   if (!error) {
     res.send(tweets);
   }
